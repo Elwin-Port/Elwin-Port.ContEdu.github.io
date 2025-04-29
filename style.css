@@ -15,7 +15,6 @@
   position: relative;
   top: 800px;
   left: 46%;
-  background-color: red;
   height: 20px;
   width: 80px;
 }
@@ -24,4 +23,11 @@
   position: relative;
   top: 700px;
   left: 60%;
+}
+
+.circleTest{
+  height: 140px;
+  width: 140px;
+  background-color: darkgray;
+  border-radius: 50%;
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scroll Proximity Circles</title>
+  <style>
+    body {
+      height: 200vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      font-family: sans-serif;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+    #triggerCircle {
+      top: 150vh; /* Positioned far down the page */
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    #reactiveCircle {
+      top: 50vh;
+      width: 80px;
+      height: 80px;
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="triggerCircle" class="circle"></div>
+  <div id="reactiveCircle" class="circle"></div>
+
+  <script>
+    const trigger = document.getElementById('triggerCircle');
+    const reactive = document.getElementById('reactiveCircle');
+
+    window.addEventListener('scroll', () => {
+      const triggerRect = trigger.getBoundingClientRect();
+      const reactiveRect = reactive.getBoundingClientRect();
+
+      const triggerCenterY = triggerRect.top + triggerRect.height / 2;
+      const reactiveCenterY = reactiveRect.top + reactiveRect.height / 2;
+
+      const distance = Math.abs(triggerCenterY - reactiveCenterY);
+      const maxDistance = window.innerHeight;
+
+      // Normalize the distance to a 0–1 range and invert it
+      const scale = Math.max(0.5, 1.5 - (distance / maxDistance) * 1.5);
+
+      reactive.style.transform = `scale(${scale})`;
+    });
+  </script>
+</body>
+</html>
+
+<script>
+    const triggerCircle = document.querySelector('.trigger');
+    const reactiveCircle = document.querySelector('.reactive');
+  
+    function updateReactiveCircle() {
+      const triggerRect = triggerCircle.getBoundingClientRect();
+      const reactiveRect = reactiveCircle.getBoundingClientRect();
+  
+      // Calculate center points
+      const triggerCenter = triggerRect.left + triggerRect.width / 2;
+      const reactiveCenter = reactiveRect.left + reactiveRect.width / 2;
+  
+      // Distance between centers
+      const distance = Math.abs(triggerCenter - reactiveCenter);
+  
+      // Set scale based on proximity (closer = larger)
+      const maxDistance = 500;
+      const scale = Math.max(1, 2 - distance / maxDistance); // scale from 2 (close) to 1 (far)
+  
+      reactiveCircle.style.transform = `scale(${scale})`;
+    }
+  
+    window.addEventListener('scroll', updateReactiveCircle);
+    window.addEventListener('resize', updateReactiveCircle); // adjust on resize too
+  </script>
