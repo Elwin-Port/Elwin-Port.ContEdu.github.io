@@ -1,11 +1,33 @@
 .spacer {
-    height: 2000px;
+    height: 1000px;
   }
 
-  .rect1{
-    height: 500px;
-  }
+.circle{
+  position: fixed;
+  left: 48%;
+  background-color: blue;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
 
-.rect2{
-    height: 500px;
+.splat{
+  position: relative;
+  top: 800px;
+  left: 46%;
+  height: 20px;
+  width: 80px;
+}
+
+.fixed-element{
+  position: relative;
+  top: 700px;
+  left: 60%;
+}
+
+.circleTest{
+  height: 140px;
+  width: 140px;
+  background-color: darkgray;
+  border-radius: 50%;
 }
